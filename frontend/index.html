@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reflex Delivery Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <div>
+        <h1>Reflex</h1>
+        <p>Delivery Management System</p>
+    </div>
+
+    <div class="role-selector">
+        <label for="role">View as:</label>
+
+        <select id="role" onchange="changeRole()">
+            <option value="retailer">Retailer</option>
+            <option value="dispatcher">Dispatcher</option>
+            <option value="rider">Rider</option>
+        </select>
+    </div>
+</header>
+
+<main>
+
+    <!-- ================= RETAILER ================= -->
+
+    <section id="retailer-view" class="view">
+
+        <div class="page-title">
+            <h2>Retailer Dashboard</h2>
+            <p>Create and track delivery requests.</p>
+        </div>
+
+        <div class="card">
+
+            <h3>New Delivery Request</h3>
+
+            <form id="delivery-form">
+
+                <div class="form-grid">
+
+                    <div>
+                        <label for="customer_name">
+                            Customer Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="customer_name"
+                            placeholder="e.g. Mary Wanjiku"
+                            required
+                        >
+                    </div>
+
+                    <div>
+                        <label for="customer_phone">
+                            Customer Phone
+                        </label>
+
+                        <input
+                            type="text"
+                            id="customer_phone"
+                            placeholder="e.g. 0712345678"
+                            required
+                        >
+                    </div>
+
+                    <div>
+                        <label for="address">
+                            Delivery Address
+                        </label>
+
+                        <input
+                            type="text"
+                            id="address"
+                            placeholder="e.g. Westlands, Nairobi"
+                            required
+                        >
+                    </div>
+
+                    <div>
+                        <label for="item_description">
+                            Item Description
+                        </label>
+
+                        <input
+                            type="text"
+                            id="item_description"
+                            placeholder="e.g. Samsung Galaxy A15"
+                            required
+                        >
+                    </div>
+
+                </div>
+
+                <button type="submit">
+                    Create Delivery
+                </button>
+
+            </form>
+
+            <div id="form-message"></div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <h3>My Delivery Requests</h3>
+
+                <button onclick="loadDeliveries()">
+                    Refresh
+                </button>
+
+            </div>
+
+            <div id="retailer-deliveries"></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= DISPATCHER ================= -->
+
+    <section id="dispatcher-view" class="view hidden">
+
+        <div class="page-title">
+            <h2>Dispatcher Dashboard</h2>
+            <p>Manage open requests and assign riders.</p>
+        </div>
+
+
+        <div class="stats">
+
+            <div class="stat-card">
+                <span>Open</span>
+                <strong id="open-count">0</strong>
+            </div>
+
+            <div class="stat-card">
+                <span>Assigned</span>
+                <strong id="assigned-count">0</strong>
+            </div>
+
+            <div class="stat-card">
+                <span>Delivered</span>
+                <strong id="delivered-count">0</strong>
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <h3>Delivery Requests</h3>
+
+                <button onclick="loadDispatcher()">
+                    Refresh
+                </button>
+
+            </div>
+
+            <div id="dispatcher-deliveries"></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= RIDER ================= -->
+
+    <section id="rider-view" class="view hidden">
+
+        <div class="page-title">
+
+            <h2>Rider Dashboard</h2>
+
+            <p>
+                View assigned deliveries and update their status.
+            </p>
+
+        </div>
+
+
+        <!-- RIDER SELECTOR -->
+
+        <div class="card">
+
+            <h3>Select Rider</h3>
+
+            <select id="rider-select" onchange="loadRider()">
+
+                <option value="1">
+                    John Rider
+                </option>
+
+                <option value="2">
+                    Peter Rider
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- ASSIGNED DELIVERIES -->
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <h3>My Assigned Deliveries</h3>
+
+                <button onclick="loadRider()">
+                    Refresh
+                </button>
+
+            </div>
+
+            <div id="rider-deliveries"></div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<script src="app.js"></script>
+
+</body>
+</html>
